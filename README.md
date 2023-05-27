@@ -50,10 +50,37 @@ thread에 대한 요약문장을 제공함으로 사용자가 전체 대화를 �
 
 - 특정 thread에 포함되는 문장들은 해당 thread에 새로운 문장이 추가될 때마다 그 thread를 대표하는 요약문장이 갱신됩니다.
 
+ ```
+self.threads[bestIndex].append(sentence)
+self.threadSum[bestIndex] = self.summarizer("[BOS]" + "[SEP]".join(self.threads[bestIndex]) + "[EOS]", max_length=self.max_length)[0]['summary_text']
+self.whichThread.append("thread" + str(bestIndex))
+ ```
+
 ### Scoring
 
 - 두 문장에 대한 임베딩을 형성하고 형성된 임베딩을 바탕으로 두 문장의 cosine similarity를 구합니다. 다만 대화의 주제는 시간이 지남에 따라 영향력이 떨어진다는 점을 고려하여 시간에 의한 가중치를 고려하여 점수를 계산하였습니다.
+```
+time_parameter = self.time_weighted((self.threadTime[i],time), self.time_mode)
+current_score =  time_parameter *self.similarityCheck(sentence, self.threadSum[i])
+```
+
 
 ### Creating Thread
 
 - 새롭게 생겨나는 thread는 이 thread에 생성 시점과 기준이 되는 요약문을 갖습니다. 다만 대량의 채팅을 입력으로 받아 소량의 thread로 나누는 model의 목적에 따라서 사용자의 편의성을 위해 입력의 양에 따라서 생성되는 thread의 개수를 제한하였습니다.
+
+```
+if(self.threads != [] and len(self.threadSum) >= self.maxThreadNumber) : #thread 媛쒖닔
+    self.threads[bestIndex].append(sentence)
+    self.threadSum[bestIndex] = self.summarizer("[BOS]" + "[SEP]".join(self.threads[bestIndex]) + "[EOS]", max_length=self.max_length)[0]['summary_text']
+    self.whichThread.append("thread" + str(bestIndex))#�대뼡 thread�� 異붽� �섏뿀�붿� 異붿쟻
+else : 
+    newThread = [sentence]
+    new_summ = self.summarizer("[BOS]" + "[SEP]".join(newThread) + "[EOS]", max_length=self.max_length)[0]['summary_text']
+    if new_summ != "":
+        self.whichThread.append("thread" + str(len(self.threadSum)))
+        self.threadId.append("thread" + str(len(self.threadSum)))#�덈줈�� thread瑜� �앹꽦�덉쓣 ��, 洹� thread id �덈줈 異붽�
+        self.threadSum.append(new_summ)
+        self.threads.append(newThread)
+        self.threadTime.append(time)
+```
