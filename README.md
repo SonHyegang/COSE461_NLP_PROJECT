@@ -112,3 +112,9 @@ elif match_score < self.match_threshold / 2:
 ### Correction
 
 - 대화라는 입력의 특성 상 무의미한 단어가 포함된 경우는 너무 많고 다양해서 이러한 경우를 특정하고 찾는 데 너무 많은 시간과 메모리를 필요로 했습니다.  따라서  성공한 사례에서 임계값을 보정하여 이러한 사례를 수정했습니다.
+
+
+
+## Grid Search Model
+
+- 학습 모델을 구축한 후 local optima에 빠지지 않았는지 확인학이 위하여 Grid Search Model을 만듭니다.
