@@ -101,10 +101,19 @@ else :
 if predict_cnt>batch_size and model.thresholdScore >learning_rate:
     model.thresholdScore-=learning_rate
     self.threshold_direction = -1
-elif predict_cnt <= batch_size and model.thresholdScore < 1-learning_rate:
+elif predict_cnt < batch_size and model.thresholdScore < 1-learning_rate:
     model.thresholdScore+=learning_rate
     self.threshold_direction = 1
 elif match_score < self.match_threshold / 2:
     if 1-learning_rate > model.thresholdScore > learning_rate:
         model.thresholdScore+=learning_rate * (1/4)* self.threshold_direction
+```
+
+### Correction
+
+- 대화라는 입력의 특성 상 무의미한 단어가 포함된 경우는 너무 많고 다양해서 이러한 경우를 특정하고 찾는 데 너무 많은 시간과 메모리를 필요로 했습니다.  따라서  성공한 사례에서 임계값을 보정하여 이러한 사례를 수정했습니다.
+
+```
+model.thresholdScore+=learning_rate
+self.threshold_direction = 1
 ```
