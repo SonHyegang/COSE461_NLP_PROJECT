@@ -4,7 +4,9 @@
 
 조원 : 류희철, 손혜강, 최진우
 
-## Quick Start
+## Installation
+
+아래 커맨드로 설치할 수 있습니다.
 
     pip install transformers
     pip install numpy
