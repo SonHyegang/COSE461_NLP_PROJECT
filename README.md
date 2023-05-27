@@ -16,7 +16,7 @@ pip install pandas
 
 ## Using
 
-다음과 같은 명령어로 카카오톡 데이터를 읽어 실행할 수 있습니다
+다음과 같은 명령어로 카카오톡 대화를 입력으로 받아 실행할 수 있습니다
 ```Python
 from utils import data_load
 from newpipe import PipeModel
