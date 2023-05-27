@@ -84,3 +84,27 @@ else :
         self.threads.append(newThread)
         self.threadTime.append(time)
 ```
+
+
+## Thread Learning Model
+
+### Mechanism
+
+-Thread Learning Model의 parameter는 accuracy와 thread 개수입니다. accuracy는 이 모델의 주요 매개변수로 프로젝트의 목적이 대량의 카톡 대화를 요약하고 분리하는 것이기에 적절한 thread를 분리하는 것이 가장 중요합니다. 따라서 다른 것보다 모델 요약의 accuracy를 우선시했습니다.
+
+### Modification Phase
+
+-Modification은 높은 threshold는 많은 thread를 생성하고 낮은 threshold는 적은 thread를 생성한다는 규칙에 따라 수정했습니다. thread 수가 batch size 2보다 크면 모델이 threshold를 줄입니다. 반대 상황에서는 threshold를 높입니다.
+- 또한 만일 정확도가 낮아 Modification Phase에 들어왔음에도 thread 개수가 batch size 2와 동일한 경우가 있습니다. 이 경우 정확도가 눈에 띄게 작아지므로 모델은 진행 방향으로 임계값을 아주 약간 이동합니다.
+
+```
+if predict_cnt>batch_size and model.thresholdScore >learning_rate:
+    model.thresholdScore-=learning_rate
+    self.threshold_direction = -1
+elif predict_cnt <= batch_size and model.thresholdScore < 1-learning_rate:
+    model.thresholdScore+=learning_rate
+    self.threshold_direction = 1
+elif match_score < self.match_threshold / 2:
+    if 1-learning_rate > model.thresholdScore > learning_rate:
+        model.thresholdScore+=learning_rate * (1/4)* self.threshold_direction
+```
