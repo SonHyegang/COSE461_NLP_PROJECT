@@ -26,7 +26,7 @@ times = chats[3][0]
 sentence = chats[2][0]
 
 pipemodel = PipeModel()
-pipemodel.predict(sentence,times)
+predict_order, predict_summaries = pipemodel.predict(sentence,times)
 ```
     
 
