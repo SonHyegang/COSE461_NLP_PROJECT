@@ -4,4 +4,6 @@
 
 조원 : 류희철, 손혜강, 최진우
 
-##Quick Start
+## Quick Start
+
+  pip install transformers
