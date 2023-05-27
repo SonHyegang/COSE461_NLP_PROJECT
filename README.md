@@ -6,4 +6,4 @@
 
 ## Quick Start
 
-  pip install transformers
+    pip install transformers
