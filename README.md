@@ -8,13 +8,15 @@
 
 - 아래 커맨드로 설치할 수 있습니다.
 
+```
     pip install transformers
     pip install numpy
     pip install pandas
+```
 
-
+다음과 같은 명령어로 실행할 수 있습니다
 ```Python
-    data2 = data_load(source="kakao", load_mode=1, test_mode=True)
+    data = data_load(source="kakao", load_mode=1, test_mode=True)
 ```
     
 
