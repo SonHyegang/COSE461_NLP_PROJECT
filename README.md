@@ -1,8 +1,8 @@
 # COSE461_NLP_PROJECT
 
-2023년도 1학기 자연어처리 과제로 제작한 Conversation Segregation Model입니다.
+- 2023년도 1학기 자연어처리 과제로 제작한 Conversation Segregation Model입니다.
 
-조원 : 류희철, 손혜강, 최진우
+- 조원 : 류희철, 손혜강, 최진우
 
 ## Installation
 
@@ -12,6 +12,11 @@
     pip install numpy
     pip install pandas
 
+
+```Python
+    data2 = data_load(source="kakao", load_mode=1, test_mode=True)
+```
+    
 
 ## Instruction
 
