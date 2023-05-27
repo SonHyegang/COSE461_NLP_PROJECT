@@ -7,3 +7,5 @@
 ## Quick Start
 
     pip install transformers
+    pip install numpy
+    pip install pandas
