@@ -9,16 +9,24 @@
 - 아래 커맨드로 설치할 수 있습니다.
 
 ```
-    pip install transformers
-    pip install numpy
-    pip install pandas
+pip install transformers
+pip install numpy
+pip install pandas
 ```
 
 ## Using
 
 다음과 같은 명령어로 실행할 수 있습니다
 ```Python
-    data = data_load(source="kakao", load_mode=1, test_mode=True)
+from utils import data_load
+from newpipe import PipeModel
+
+chats = data_load(source="kakao",load_mode=1,test_mode=False)
+times = chats[3][0]
+sentence = chats[2][0]
+
+pipemodel = PipeModel()
+pipemodel.predict(sentence,times)
 ```
     
 
