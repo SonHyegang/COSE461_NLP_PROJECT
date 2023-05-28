@@ -70,16 +70,16 @@ current_score =  time_parameter *self.similarityCheck(sentence, self.threadSum[i
 - 새롭게 생겨나는 thread는 이 thread에 생성 시점과 기준이 되는 요약문을 갖습니다. 다만 대량의 채팅을 입력으로 받아 소량의 thread로 나누는 model의 목적에 따라서 사용자의 편의성을 위해 입력의 양에 따라서 생성되는 thread의 개수를 제한하였습니다.
 
 ```
-if(self.threads != [] and len(self.threadSum) >= self.maxThreadNumber) : #thread 媛쒖닔
+if(self.threads != [] and len(self.threadSum) >= self.maxThreadNumber) :
     self.threads[bestIndex].append(sentence)
     self.threadSum[bestIndex] = self.summarizer("[BOS]" + "[SEP]".join(self.threads[bestIndex]) + "[EOS]", max_length=self.max_length)[0]['summary_text']
-    self.whichThread.append("thread" + str(bestIndex))#�대뼡 thread�� 異붽� �섏뿀�붿� 異붿쟻
+    self.whichThread.append("thread" + str(bestIndex))
 else : 
     newThread = [sentence]
     new_summ = self.summarizer("[BOS]" + "[SEP]".join(newThread) + "[EOS]", max_length=self.max_length)[0]['summary_text']
     if new_summ != "":
         self.whichThread.append("thread" + str(len(self.threadSum)))
-        self.threadId.append("thread" + str(len(self.threadSum)))#�덈줈�� thread瑜� �앹꽦�덉쓣 ��, 洹� thread id �덈줈 異붽�
+        self.threadId.append("thread" + str(len(self.threadSum)))
         self.threadSum.append(new_summ)
         self.threads.append(newThread)
         self.threadTime.append(time)
@@ -118,3 +118,21 @@ elif match_score < self.match_threshold / 2:
 ## Grid Search Model
 
 - 학습 모델을 구축한 후 local optima에 빠지지 않았는지 확인학이 위하여 Grid Search Model을 만듭니다.
+
+```
+max_threshold = -1
+for threshold in grid:
+    model.thresholdScore = threshold
+    total_score, _ = evaluation(model ,dir_path)
+```
+
+### Recursive
+
+- grid search model를 반복하여 시행하여 원하는 깊이까지 조정합니다.
+```
+start = threshold-gap if threshold >= gap else 0
+end = threshold+gap if threshold <= 1 - gap else 1
+gap = gap/5
+iteration = np.arange(start, end, gap)
+max_threshold = grid_search(model, dir_path, iteration)
+```
