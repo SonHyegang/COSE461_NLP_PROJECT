@@ -50,7 +50,7 @@ thread에 대한 요약문장을 제공함으로 사용자가 전체 대화를 �
 
 - 특정 thread에 포함되는 문장들은 해당 thread에 새로운 문장이 추가될 때마다 그 thread를 대표하는 요약문장이 갱신됩니다.
 
- ```
+ ```Python
 self.threads[bestIndex].append(sentence)
 self.threadSum[bestIndex] = self.summarizer("[BOS]" + "[SEP]".join(self.threads[bestIndex]) + "[EOS]", max_length=self.max_length)[0]['summary_text']
 self.whichThread.append("thread" + str(bestIndex))
@@ -59,7 +59,7 @@ self.whichThread.append("thread" + str(bestIndex))
 ### Scoring
 
 - 두 문장에 대한 임베딩을 형성하고 형성된 임베딩을 바탕으로 두 문장의 cosine similarity를 구합니다. 다만 대화의 주제는 시간이 지남에 따라 영향력이 떨어진다는 점을 고려하여 시간에 의한 가중치를 고려하여 점수를 계산하였습니다.
-```
+```Python
 time_parameter = self.time_weighted((self.threadTime[i],time), self.time_mode)
 current_score =  time_parameter *self.similarityCheck(sentence, self.threadSum[i])
 ```
@@ -69,7 +69,7 @@ current_score =  time_parameter *self.similarityCheck(sentence, self.threadSum[i
 
 - 새롭게 생겨나는 thread는 이 thread에 생성 시점과 기준이 되는 요약문을 갖습니다. 다만 대량의 채팅을 입력으로 받아 소량의 thread로 나누는 model의 목적에 따라서 사용자의 편의성을 위해 입력의 양에 따라서 생성되는 thread의 개수를 제한하였습니다.
 
-```
+```Python
 if(self.threads != [] and len(self.threadSum) >= self.maxThreadNumber) :
     self.threads[bestIndex].append(sentence)
     self.threadSum[bestIndex] = self.summarizer("[BOS]" + "[SEP]".join(self.threads[bestIndex]) + "[EOS]", max_length=self.max_length)[0]['summary_text']
@@ -97,7 +97,7 @@ else :
 -Modification은 높은 threshold는 많은 thread를 생성하고 낮은 threshold는 적은 thread를 생성한다는 규칙에 따라 수정했습니다. thread 수가 batch size 2보다 크면 모델이 threshold를 줄입니다. 반대 상황에서는 threshold를 높입니다.
 - 또한 만일 정확도가 낮아 Modification Phase에 들어왔음에도 thread 개수가 batch size 2와 동일한 경우가 있습니다. 이 경우 정확도가 눈에 띄게 작아지므로 모델은 진행 방향으로 임계값을 아주 약간 이동합니다.
 
-```
+```Python
 if predict_cnt>batch_size and model.thresholdScore >learning_rate:
     model.thresholdScore-=learning_rate
     self.threshold_direction = -1
@@ -119,7 +119,7 @@ elif match_score < self.match_threshold / 2:
 
 - 학습 모델을 구축한 후 local optima에 빠지지 않았는지 확인학이 위하여 Grid Search Model을 만듭니다.
 
-```
+```Python
 max_threshold = -1
 for threshold in grid:
     model.thresholdScore = threshold
@@ -129,7 +129,8 @@ for threshold in grid:
 ### Recursive
 
 - grid search model를 반복하여 시행하여 원하는 깊이까지 조정합니다.
-```
+
+```Python
 start = threshold-gap if threshold >= gap else 0
 end = threshold+gap if threshold <= 1 - gap else 1
 gap = gap/5
