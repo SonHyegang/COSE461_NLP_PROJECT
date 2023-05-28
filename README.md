@@ -142,7 +142,7 @@ max_threshold = grid_search(model, dir_path, iteration)
 
 - 프로젝트의 평가를 위해 구현하였으며 주어진 데이터에 대해 rouge score와 matching accuracy를 측정합니다.
 
-### Implementation
+### Mechanism
 
 - 대화 속에서 thread를 구분하는 목적에 맞춰 두 개의 dialog를 합친 후 기존의 summary 2개와 분리해낸 thread를 비교하여 평가합니다.
 
