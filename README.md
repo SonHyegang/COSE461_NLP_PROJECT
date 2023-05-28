@@ -162,7 +162,7 @@ predict_order, predict_summaries = model.predict(new_dialogues, new_times)
 
 - 기존의 summary와 thread를 비교하여 얼마나 정확하게 분류하였는지 평가합니다.
 
-```
+```Python
 def cal_matching_accuracy(list1: List[str], list2: List[str]) -> float:
     ids = list(set(list1))    
     id1_thread = {elem: list2.count(elem) for elem, id_elem in zip(list2, list1) if id_elem == ids[0]}
