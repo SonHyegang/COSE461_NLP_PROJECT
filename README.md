@@ -6,7 +6,7 @@
 
 ## Installation
 
-- 아래 커맨드로 필요한 파일을 설치할 수 있습니다.
+- 아래 커맨드로 필요한 라이브러리를 설치할 수 있습니다.
 
 ```
 pip install transformers
@@ -17,18 +17,7 @@ pip install pandas
 ## Using
 
 다음과 같은 명령어로 카카오톡 대화를 입력으로 받아 실행할 수 있습니다
-```Python
-from utils import data_load
-from newpipe import PipeModel
-
-chats = data_load(source="kakao",load_mode=1,test_mode=False)
-times = chats[3][0]
-sentence = chats[2][0]
-
-pipemodel = PipeModel()
-predict_order, predict_summaries = pipemodel.predict(sentence,times)
-```
-    
+https://colab.research.google.com/drive/17NtD-kcciKjq_IwVt78G9lRWtRF0Hlmw?usp=sharing    
 
 ## Instruction
 
