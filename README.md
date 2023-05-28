@@ -158,6 +158,28 @@ new_times = [time1.pop() if (order[i] == sampled_data[0]['id'].values[0]) else t
 predict_order, predict_summaries = model.predict(new_dialogues, new_times)
 ```
 
+### Accuracy
+
+- 기존의 summary와 thread를 비교하여 얼마나 정확하게 분류하였는지 평가합니다.
+
+```
+def cal_matching_accuracy(list1: List[str], list2: List[str]) -> float:
+    ids = list(set(list1))    
+    id1_thread = {elem: list2.count(elem) for elem, id_elem in zip(list2, list1) if id_elem == ids[0]}
+    id2_thread = {elem: list2.count(elem) for elem, id_elem in zip(list2, list1) if id_elem == ids[1]}
+
+    best_match_id1 = max(id1_thread, key=id1_thread.get) if id1_thread else None
+    best_match_id2 = max(id2_thread, key=id2_thread.get) if id2_thread else None
+
+    matching_count = sum(1 for id, thread in zip(list1, list2) if thread == best_match_id1 and id == ids[0]) + sum(1 for id, thread in zip(list1, list2) if thread == best_match_id2 and id == ids[1])
+    if best_match_id1 == best_match_id2:
+        matching_count = max(sum(1 for id, thread in zip(list1, list2) if thread == best_match_id1 and id == ids[0]), sum(1 for id, thread in zip(list1, list2) if thread == best_match_id2 and id == ids[1]))
+
+    matching_id = [best_match_id1 if thread == best_match_id1 and id == ids[0] else best_match_id2 if thread == best_match_id2 and id == ids[1] else '' for id, thread in zip(list1, list2)]
+
+    return matching_count / len(list1), (ids[0], best_match_id1), (ids[1], best_match_id2)
+```
+
 
 ## Dater Loader
 
