@@ -6,7 +6,7 @@
 
 ## Installation
 
-- 아래 커맨드로 필요한을파일을 설치할 수 있습니다.
+- 아래 커맨드로 필요한 파일을 설치할 수 있습니다.
 
 ```
 pip install transformers
