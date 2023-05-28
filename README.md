@@ -47,7 +47,7 @@ print(summarization)
  ```
 **반드시 dialogue 다른 예시로정수정** 
 
-## DEMO
+## DEMO w/ KaokaoTalk data
 https://colab.research.google.com/drive/17NtD-kcciKjq_IwVt78G9lRWtRF0Hlmw?usp=sharing    
 
 ### Example of DEMO
