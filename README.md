@@ -14,7 +14,7 @@ pip install numpy
 pip install pandas
 ```
 
-## Using
+## DEMO
 
 다음과 같은 명령어로 카카오톡 대화를 입력으로 받아 실행할 수 있습니다
 https://colab.research.google.com/drive/17NtD-kcciKjq_IwVt78G9lRWtRF0Hlmw?usp=sharing    
