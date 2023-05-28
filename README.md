@@ -14,10 +14,45 @@ pip install numpy
 pip install pandas
 ```
 
-## DEMO
+## USING
+ ```Python
+from transformers import AutoTokenizer, BartForConditionalGeneration
+model_name = "Hyegang/BART_COSE461_TEAM32"
+max_length = 64
+num_beams = 5
+length_penalty = 1.2
+dialogue = ["밥 ㄱ?", "고고고고 뭐 먹을까?", "어제 김치찌개 먹어서 한식말고 딴 거", "그럼 돈까스 어때?", "오 좋다 1시 학관 앞으로 오셈", "ㅇㅋ"]
 
-다음과 같은 명령어로 카카오톡 대화를 입력으로 받아 실행할 수 있습니다
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+model = BartForConditionalGeneration.from_pretrained(model_name)
+model.eval()
+
+start_time = time.time()
+inputs = tokenizer("[BOS]" + "[SEP]".join(dialogue) + "[EOS]", return_tensors="pt")
+outputs = model.generate(
+    inputs.input_ids,
+    attention_mask=inputs.attention_mask,
+    num_beams=num_beams,
+    length_penalty=length_penalty,
+    max_length=max_length,
+    use_cache=True,
+)
+encode_time = time.time()-start_time
+start_time = time.time()
+summarization = tokenizer.decode(outputs[0], skip_special_tokens=True)
+decode_time = time.time()-start_time
+print("==================================================")
+print(summarization)
+
+ ```
+**반드시 dialogue 다른 예시로정수정** 
+
+## DEMO
 https://colab.research.google.com/drive/17NtD-kcciKjq_IwVt78G9lRWtRF0Hlmw?usp=sharing    
+
+### Example of DEMO
+**스크린 샷 첨부**
+
 
 ## Instruction
 
