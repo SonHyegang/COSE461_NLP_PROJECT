@@ -137,3 +137,33 @@ gap = gap/5
 iteration = np.arange(start, end, gap)
 max_threshold = grid_search(model, dir_path, iteration)
 ```
+
+## Dater Loader
+
+- 프로젝트의 학습과 평가에 사용되는 AI-Hub 데이터와 실사용에 쓰이는 kakao talk 데이터를 모두 받아들이기 위해 구현했습니다.
+
+### Data Presprocessing
+
+- 대화에는 화자가 나타나지 않고 다양한 화자가 불규칙적으로 나타나므로 화자 구분이 중요합니다. 따라서 화자를 드러내고 연속으로 나타날 경우 병합하는 방식으로 전처리 했습니다.
+
+```Python
+def postprocessing(speaker: str, dialogue: str) -> str:
+    particile = ''
+    initial_consonant = extract_initial_consonant(speaker[-1])
+    if initial_consonant in ['ㄱ', 'ㄴ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅈ', 'ㅊ', 'ㅌ', 'ㅎ']:
+        particile = '이'
+    else:
+        particile = '가'
+    return speaker + particile + " " + dialogue + "라고 말했다."
+```
+```Python
+if dialogue["participantID"] == prev_speaker_id:
+    prev_line += " " + utterance
+else:
+    if prev_line:
+        utts.append(prev_line)
+        _times.append(_data["body"]["dialogue"][i-1]["time"][0:5]) # Hour:minute:second(00:00:00) -> Hour:minute(00:00)
+        _participantIDs.append(dialogue["participantID"])
+    prev_line = utterance
+    prev_speaker_id = dialogue["participantID"]
+```
