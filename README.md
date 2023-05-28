@@ -138,6 +138,27 @@ iteration = np.arange(start, end, gap)
 max_threshold = grid_search(model, dir_path, iteration)
 ```
 
+## Evaluation
+
+- 프로젝트의 평가를 위해 구현하였으며 주어진 데이터에 대해 rouge score와 matching accuracy를 측정합니다.
+
+### Implementation
+
+- 대화 속에서 thread를 구분하는 목적에 맞춰 두 개의 dialog를 합친 후 기존의 summary 2개와 분리해낸 thread를 비교하여 평가합니다.
+
+```Python
+dialogues1 = sampled_data[0]['dialogues'].tolist()[0][::-1]
+dialogues2 = sampled_data[1]['dialogues'].tolist()[0][::-1]
+time1 = sampled_data[0]['times'].tolist()[0][::-1]
+time2 = sampled_data[1]['times'].tolist()[0][::-1]
+
+new_dialogues = [dialogues1.pop() if (order[i] == sampled_data[0]['id'].values[0]) else dialogues2.pop() for i in range(len(order))]
+new_times = [time1.pop() if (order[i] == sampled_data[0]['id'].values[0]) else time2.pop() for i in range(len(order))]
+            
+predict_order, predict_summaries = model.predict(new_dialogues, new_times)
+```
+
+
 ## Dater Loader
 
 - 프로젝트의 학습과 평가에 사용되는 AI-Hub 데이터와 실사용에 쓰이는 kakao talk 데이터를 모두 받아들이기 위해 구현했습니다.
