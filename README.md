@@ -4,8 +4,6 @@
 
 - 조원 : 류희철, 손혜강, 최진우
 
--https://huggingface.co/Hyegang/BART_COSE461_TEAM32
-
 ## Installation
 
 - 아래 커맨드로 필요한 라이브러리를 설치할 수 있습니다.
@@ -17,6 +15,7 @@ pip install pandas
 ```
 
 ## USING
+https://huggingface.co/Hyegang/BART_COSE461_TEAM32
  ```Python
 from transformers import AutoTokenizer, BartForConditionalGeneration
 model_name = "Hyegang/BART_COSE461_TEAM32"
