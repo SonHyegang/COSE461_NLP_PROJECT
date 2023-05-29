@@ -59,13 +59,14 @@ print(summarization)
 
 >>>파스타를 하면 사람이 많아서 면을 불지 않을지 이야기하고 월남쌈이나 고기를 볶아서 쌈을 싸 먹을지 이야기한다.
  ```
-**반드시 dialogue 다른 예시로정수정** 
+
 
 ## DEMO w/ KaokaoTalk data
 https://colab.research.google.com/drive/17NtD-kcciKjq_IwVt78G9lRWtRF0Hlmw?usp=sharing    
 
 ### Example of DEMO
-**스크린 샷 첨부**
+
+
 ![image](https://github.com/SonHyegang/COSE461_NLP_PROJECT/assets/119485240/d2bfade7-e087-4b16-bde5-5ee94d609b89)
 
 
