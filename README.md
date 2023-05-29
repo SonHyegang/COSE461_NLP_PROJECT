@@ -66,6 +66,8 @@ https://colab.research.google.com/drive/17NtD-kcciKjq_IwVt78G9lRWtRF0Hlmw?usp=sh
 
 ### Example of DEMO
 **스크린 샷 첨부**
+![image](https://github.com/SonHyegang/COSE461_NLP_PROJECT/assets/119485240/d2bfade7-e087-4b16-bde5-5ee94d609b89)
+
 
 
 ## Instruction
