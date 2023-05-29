@@ -67,7 +67,7 @@ https://colab.research.google.com/drive/17NtD-kcciKjq_IwVt78G9lRWtRF0Hlmw?usp=sh
 ### Example of DEMO
 
 
-![image](https://github.com/SonHyegang/COSE461_NLP_PROJECT/assets/119485240/7b065da2-18bd-43ea-ae53-e5f3b20cfc46)
+
 
 
 
