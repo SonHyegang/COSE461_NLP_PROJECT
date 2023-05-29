@@ -4,6 +4,8 @@
 
 - 조원 : 류희철, 손혜강, 최진우
 
+-https://huggingface.co/Hyegang/BART_COSE461_TEAM32
+
 ## Installation
 
 - 아래 커맨드로 필요한 라이브러리를 설치할 수 있습니다.
