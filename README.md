@@ -21,7 +21,19 @@ model_name = "Hyegang/BART_COSE461_TEAM32"
 max_length = 64
 num_beams = 5
 length_penalty = 1.2
-dialogue = ["밥 ㄱ?", "고고고고 뭐 먹을까?", "어제 김치찌개 먹어서 한식말고 딴 거", "그럼 돈까스 어때?", "오 좋다 1시 학관 앞으로 오셈", "ㅇㅋ"]
+dialogue = ['파스타 하면 사람 많아서 면 불고 그러지 않을까?',
+'한 번에 11인분 다 끓일 수 있어?',
+'쉽지 않기는 해요… 딴 데 보니까 파스타 두 종류 해서 따로따로 하더라구요',
+'월남쌈 진짜 괜찮긴했는데',
+'아니면 고기 볶아서 쌈싸먹을까?',
+'상추 깻잎 하고 양념고기 사서 볶고',
+'오홍',
+'옹 이것도 괜찮긴 하다 진짜 집밥 같고',
+'간단하긴 할 듯여',
+'이게 그냥 제육볶음인가?-??',
+'옹 좋은데',
+'다들 어떠싱지??',
+'오 좋아']
 
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = BartForConditionalGeneration.from_pretrained(model_name)
