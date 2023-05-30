@@ -16,6 +16,7 @@ pip install pandas
 ```
 
 ## USING
+*NOTE : For BERT learned with AI Hub data used for ChatMTT, refer to the link below. Some files (.h5, .bin) are not all uploaded due to github's capacity limit policy.*
 https://huggingface.co/Hyegang/BART_COSE461_TEAM32
  ```Python
 from transformers import AutoTokenizer, BartForConditionalGeneration
