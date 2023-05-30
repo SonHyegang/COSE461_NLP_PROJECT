@@ -1,8 +1,9 @@
-# COSE461_NLP_PROJECT
+# ChatMTT :Chat summarization about Multi-Topic Thread
 
-- 2023년도 1학기 자연어처리 과제로 제작한 Conversation Segregation Model입니다.
+- 2023년도 1학기 COSE461 자연어처리 프로젝트 산출물입니다.
 
 - 조원 : 류희철, 손혜강, 최진우
+- README Writer : 류희철
 
 ## Installation
 
@@ -15,6 +16,7 @@ pip install pandas
 ```
 
 ## USING
+https://huggingface.co/Hyegang/BART_COSE461_TEAM32
  ```Python
 from transformers import AutoTokenizer, BartForConditionalGeneration
 model_name = "Hyegang/BART_COSE461_TEAM32"
