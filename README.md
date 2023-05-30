@@ -70,7 +70,7 @@ https://colab.research.google.com/drive/17NtD-kcciKjq_IwVt78G9lRWtRF0Hlmw?usp=sh
 
 
 ![image](https://github.com/SonHyegang/COSE461_NLP_PROJECT/assets/119485240/da114a43-7fd5-47d6-8469-33f471bbd445)
-![image](https://github.com/SonHyegang/COSE461_NLP_PROJECT/assets/53131824/983aea0b-1205-4272-89d1-6fd887c138a8)
+![image](https://github.com/SonHyegang/COSE461_NLP_PROJECT/assets/53131824/91d0be58-05af-4fe1-bcb9-741a2186329d)
 
 
 
