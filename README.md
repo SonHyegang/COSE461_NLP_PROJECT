@@ -3,6 +3,7 @@
 - 2023년도 1학기 COSE461 자연어처리 프로젝트 산출물입니다.
 
 - 조원 : 류희철, 손혜강, 최진우
+- README Writer : 류희철
 
 ## Installation
 
